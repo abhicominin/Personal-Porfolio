@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scene Optimization</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Preloading Screen -->
+    <section id="loading-screen">
+
+    </section>
+
+    <!-- Slider -->
+    <div class="menu noSelect">
+        <div class="label">Follow Me</div>
+        <div class="spacer"></div>
+        <div class="item"><a target="_blank" style="text-decoration: none; color: aliceblue;" href="https://www.linkedin.com/in/abhijeet-kushwah"><span>LinkedIn</span></a></div>
+        <div class="item"><a target="_blank" style="text-decoration: none; color: aliceblue;" href="https://www.instagram.com/abhijeet_ship_it/"><span>Instagram</span></a></div>
+        <div class="item"><a target="_blank" style="text-decoration: none; color: aliceblue;" href="https://x.com/DevfromOhio"><span>Twitter</span></a></div>
+      </div>
+
+    <!-- Cursor -->
+      
+
+    <!-- WebGL Canvas -->
+    <canvas class="webgl"></canvas>
+
+    <!-- Popups -->
+    <button class="soundbutton noSelect">Sound</button>
+
+    <div class="popup" id="popup1">I am Abhijeet
+        <p class="popup2mini">I am just a human who knows a lil bit of Computer.</p>
+    </div>
+    <div class="popup" id="popup2">Welcome to my space
+        <p class="popup2mini">Place where I bring my imaginations<br/>to your visuals.</p>
+    </div>
+    <div class="popup" id="popup3">How are you there?
+        <p class="popup2mini">I am still working on this..</p>
+    </div>
+
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
+
+    <!-- Your script -->
+    <script type="module" src="./script.js"></script>
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', () => {
+            const soundButton = document.querySelector('.soundbutton');
+
+            // Attach event listener to the sound button
+            soundButton.addEventListener('click', () => {
+                if (window.threeSound) {
+                    if (window.threeSound.isPlaying) {
+                        window.threeSound.stop();
+                        soundButton.textContent = 'Play Sound';
+                    } else {
+                        window.threeSound.play();
+                        soundButton.textContent = 'Stop Sound';
+                    }
+                } else {
+                    console.error('Sound object is not available');
+                }
+            });
+        });
+    </script>
+
+    <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const cursor = document.querySelector(".cursor");
+    const cursor2 = document.querySelector(".cursor2");
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let cursor2X = 0;
+    let cursor2Y = 0;
+
+    const speed = 0.2; // Adjust the speed for smoothness (lower = slower)
+
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+        // Interpolate cursor position towards the mouse position
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+
+        cursor2X += (mouseX - cursor2X) * (speed * 1.0); // Faster for inner cursor
+        cursor2Y += (mouseY - cursor2Y) * (speed * 1.0);
+
+        // Update cursor positions
+        cursor.style.transform = `translate(${cursorX - 25}px, ${cursorY - 25}px)`; // Adjust for cursor size
+        cursor2.style.transform = `translate(${cursor2X - 4}px, ${cursor2Y - 4}px)`; // Adjust for cursor2 size
+
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor(); // Start animation loop
+    
+});
+    </script>
+</body>
+</html>

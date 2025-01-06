@@ -1,0 +1,22 @@
+{
+  "name": "threejs-journey-exercise",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17",
+    "vite": "^4.3.9",
+    "vite-plugin-glsl": "^1.1.2"
+  },
+  "dependencies": {
+    "@tweenjs/tween.js": "^25.0.0",
+    "gsap": "^3.12.5",
+    "lil-gui": "^0.18.1",
+    "spectorjs": "^0.9.29",
+    "three": "^0.153.0"
+  }
+}
